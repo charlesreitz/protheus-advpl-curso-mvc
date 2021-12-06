@@ -1,0 +1,254 @@
+#line 1 "Z:\Protheus11\Protheus\include\PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Dialog.ch"
+#line 28 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Font.ch"
+#line 29 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\PTMenu.ch"
+#line 31 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Print.ch"
+#line 33 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Colors.ch"
+#line 35 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Folder.ch"
+#line 37 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\msobject.ch"
+#line 38 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\VKey.ch"
+#line 42 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\WinApi.ch"
+#line 44 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWCommand.ch"
+#line 47 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWCSS.CH"
+#line 50 "PROTHEUS.CH"
+#line 2 "G:\Google Drive\TDS\Workspace\MVC\Fontes Curso MVC\COMP021G_MVC.prw"
+#line 1 "Z:\Protheus11\Protheus\include\FWMVCDEF.CH"
+#line 1 "Z:\Protheus11\Protheus\include\PARMTYPE.CH"
+#line 2 "FWMVCDEF.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWMBROWSE.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWBROWSE.CH"
+#line 3 "FWMBROWSE.CH"
+#line 4 "FWMVCDEF.CH"
+#line 3 "G:\Google Drive\TDS\Workspace\MVC\Fontes Curso MVC\COMP021G_MVC.prw"
+#line 1 "Z:\Protheus11\Protheus\include\MSGRAPHI.CH"
+#line 6 "G:\Google Drive\TDS\Workspace\MVC\Fontes Curso MVC\COMP021G_MVC.prw"
+
+
+
+
+
+
+
+
+
+
+Function U_COMP021G_MVC()
+Local oBrowse
+
+Static oGrafPizza
+Static oGrafBar
+
+oBrowse := FWmBrowse():New()
+oBrowse:SetAlias( "ZA1" )
+oBrowse:SetDescription( "Musicas" )
+oBrowse:SetMenuDef( "COMP021G_MVC" )
+oBrowse:Activate()
+
+Return NIL
+
+
+
+Static Function MenuDef()
+Local aRotina := {}
+aRotina := FWMVCMenu( "COMP021G_MVC" )
+Return aRotina
+
+
+
+Static Function ModelDef()
+
+Local oStruZA1 := FWFormStruct( 1, "ZA1" )
+Local oStruZA2 := FWFormStruct( 1, "ZA2" )
+Local oModel
+
+
+oModel := MPFormModel():New( "CMP21G" )
+
+
+oModel:AddFields( "ZA1MASTER",, oStruZA1 )
+
+
+oModel:AddGrid( "ZA2DETAIL", "ZA1MASTER", oStruZA2 )
+
+
+oModel:SetRelation( "ZA2DETAIL", { { "ZA2_FILIAL", 'xFilial( "ZA2" )' }, { "ZA2_MUSICA", "ZA1_MUSICA" } }, ZA2->( IndexKey( 1 ) ) )
+
+
+oModel:GetModel( "ZA2DETAIL" ):SetUniqueLine( { "ZA2_AUTOR" } )
+
+
+oModel:SetDescription( "Modelo de Musicas" )
+
+
+oModel:GetModel( "ZA1MASTER" ):SetDescription( "Dados da Musica" )
+oModel:GetModel( "ZA2DETAIL" ):SetDescription( "Dados do Autor Da Musica"  )
+
+Return oModel
+
+
+
+Static Function ViewDef()
+
+Local oStruZA1 := FWFormStruct( 2, "ZA1" )
+Local oStruZA2 := FWFormStruct( 2, "ZA2" )
+
+Local oModel   := FWLoadModel( "COMP021G_MVC" )
+Local oView
+Local oGrafPizza
+Local oGrafBar
+
+
+oView := FWFormView():New()
+
+
+oView:SetModel( oModel )
+
+
+oView:AddField( "VIEW_ZA1", oStruZA1, "ZA1MASTER" )
+
+
+oView:AddGrid(  "VIEW_ZA2", oStruZA2, "ZA2DETAIL" )
+
+
+oView:CreateHorizontalBox( "SUPERIOR", 15 )
+oView:CreateHorizontalBox( "INFERIOR", 85 )
+
+
+oView:CreateVerticalBox(   "INFERIORE", 70, "INFERIOR"  )
+oView:CreateVerticalBox(   "INFERIORD", 30, "INFERIOR"  )
+
+
+oView:CreateHorizontalBox( "GRAFPIZZA", 40, "INFERIORD" )
+oView:CreateHorizontalBox( "GRAFBARRA", 60, "INFERIORD" )
+
+
+oView:SetOwnerView( "VIEW_ZA1", "SUPERIOR"  )
+oView:SetOwnerView( "VIEW_ZA2", "INFERIORE" )
+
+
+oView:AddIncrementField( "VIEW_ZA2", "ZA2_ITEM" )
+
+
+oView:EnableTitleView("VIEW_ZA2")
+
+
+oView:AddOtherObject("OTHER_PIZZA", {|oPanel,oView| GrafPizza( .F. ,oPanel,oView:GetModel())})
+oView:SetOwnerView("OTHER_PIZZA","GRAFPIZZA")
+
+oView:AddOtherObject("OTHER_BARRA", {|oPanel,oView| GrafBarra( .F. ,oPanel,oView:GetModel())})
+oView:SetOwnerView("OTHER_BARRA","GRAFBARRA")
+
+oView:SetFieldAction( "ZA2_AUTOR", { |oView, cIDView, cField, xValue| GraRefresh() } )
+oView:SetViewAction( "DELETELINE"  , { |oView| GraRefresh() } )
+oView:SetViewAction( "UNDELETELINE", { |oView| GraRefresh() } )
+
+Return oView
+
+
+
+Static Function GrafPizza( lReDraw, oPanel )
+Local aArea      := GetArea()
+Local aAreaZA0   := ZA0->( GetArea() )
+Local nQtd       := 0
+Local nQtdInt    := 0
+Local nQtdAut    := 0
+Local oModel     := FwModelActive()
+Local oModelZA2  := oModel:GetModel("ZA2DETAIL")
+Local nI
+
+For nI := 1 To oModelZA2:Length()
+	If !oModelZA2:IsDeleted( nI )
+		nQtd++
+		If ZA0->( dbSeek( xFilial( "ZA0" ) + oModelZA2:GetValue( "ZA2_AUTOR", nI ) ) )
+			If ZA0->ZA0_TIPO == "1"
+				nQtdAut++
+			Else
+				nQtdInt++
+			EndIf
+		EndIf
+	EndIf
+Next
+
+If !lReDraw
+	oGrafPizza := FWChartFactory():New()
+	oGrafPizza := oGrafPizza:GetInstance( 02 )
+	oGrafPizza:Init( oPanel, .F.  )
+	oGrafPizza:SetTitle( "Participação", 6 )
+	oGrafPizza:SetLegend( 4 )
+Else
+	oGrafPizza:Reset()
+EndIf
+
+oGrafPizza:addSerie( "Autores"    , nQtdAut/nQtd * 100 )
+oGrafPizza:addSerie( "Interpretes", nQtdInt/nQtd * 100 )
+
+oGrafPizza:build()
+
+RestArea( aAreaZA0 )
+RestArea( aArea )
+
+Return NIL
+
+
+
+Function GrafBarra( lReDraw, oPanel )
+Local aArea      := GetArea()
+Local aAreaZA0   := ZA0->( GetArea() )
+Local nQtd       := 0
+Local nQtdInt    := 0
+Local nQtdAut    := 0
+Local oModel     := FwModelActive()
+Local oModelZA2  := oModel:GetModel("ZA2DETAIL")
+Local nI
+
+For nI := 1 To oModelZA2:Length()
+	If !oModelZA2:IsDeleted( nI )
+		nQtd ++
+		If ZA0->( dbSeek( xFilial( "ZA0" ) + oModelZA2:GetValue( "ZA2_AUTOR", nI ) ) )
+			If ZA0->ZA0_TIPO == "1"
+				nQtdAut++
+			Else
+				nQtdInt++
+			EndIf
+		EndIf
+	EndIf
+Next
+
+If !lReDraw
+	oGrafBar := FWChartFactory():New()
+	oGrafBar := oGrafBar:GetInstance( 00 )
+	oGrafBar:Init( oPanel, .F. , .F.  )
+	oGrafBar:SetMaxY( 15 )
+	oGrafBar:SetTitle( "Quantidade", 6 )
+	oGrafBar:SetLegend( 2 )
+Else
+	oGrafBar:Reset()
+EndIf
+
+oGrafBar:addSerie( "Total"      , nQtd    )
+oGrafBar:addSerie( "Autores"    , nQtdAut )
+oGrafBar:addSerie( "Interpretes", nQtdInt )
+
+oGrafBar:build()
+
+RestArea( aAreaZA0 )
+RestArea( aArea )
+
+Return .T. 
+
+
+
+Static Function GraRefresh()
+GrafPizza( .T. , oGrafPizza:oOwner )
+GrafBarra( .T. , oGrafBar:oOwner   )
+Return NIL

@@ -1,0 +1,59 @@
+#line 1 "Z:\Protheus11\Protheus\include\PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Dialog.ch"
+#line 28 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Font.ch"
+#line 29 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\PTMenu.ch"
+#line 31 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Print.ch"
+#line 33 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Colors.ch"
+#line 35 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\Folder.ch"
+#line 37 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\msobject.ch"
+#line 38 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\VKey.ch"
+#line 42 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\WinApi.ch"
+#line 44 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWCommand.ch"
+#line 47 "PROTHEUS.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWCSS.CH"
+#line 50 "PROTHEUS.CH"
+#line 2 "G:\Google Drive\TDS\Workspace\MVC\Fontes Curso MVC\COMP042_MVC.prw"
+#line 1 "Z:\Protheus11\Protheus\include\FWMVCDEF.CH"
+#line 1 "Z:\Protheus11\Protheus\include\PARMTYPE.CH"
+#line 2 "FWMVCDEF.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWMBROWSE.CH"
+#line 1 "Z:\Protheus11\Protheus\include\FWBROWSE.CH"
+#line 3 "FWMBROWSE.CH"
+#line 4 "FWMVCDEF.CH"
+#line 4 "G:\Google Drive\TDS\Workspace\MVC\Fontes Curso MVC\COMP042_MVC.prw"
+
+
+
+
+
+
+
+
+
+
+Function U_COMP042_MVC()
+Local oBrowse
+
+
+
+
+
+
+
+
+
+
+
+
+If Valtype( 2 ) <> "N"; UserException("error in parameter "+'"TYPE"'+": "+"type mismatch"); ElseIf 2 # 1 .And.  2 # 2 .And.  2 # 3; UserException("error in parameter "+'"TYPE"'+": "+"invalid option"); EndIf; ; If ( 2 > 1 ); If ( ValType(      	{ { "ZA2_FILIAL", 'xFilial( "ZA2" )' }, { "ZA2_MUSICA", "ZA2_MUSICA" } } ) <> "A" ); UserException("error in parameter "+'"RELATION"'+": "+"parameter required in model"); EndIf; EndIf; ; oBrowse := FWMBrowse():New(); oBrowse:SetAlias( "ZA2" ); oBrowse:SetMenuDef( "COMP043_MVC" ); If !Empty( ); oBrowse:SetFilterDefault( ); EndIf; If !Empty( ); oBrowse:SetVldActive( ); EndIf; If ( ValType( ) == "A" ); aLegends := IIf( Empty( ), {}, ); nAuxLeg := 1; While !( nAuxLeg > Len(aLegends)); oBrowse:AddLegend( &("aLegends["+Str(nAuxLeg)+",1]"), &("aLegends["+Str(nAuxLeg)+",2]"), &("aLegends["+Str(nAuxLeg)+",3]") ); nAuxLeg++; End; EndIf; oBrowse:Activate(); ; Return; ; Static Function ModelDef(); ; Local nX, oModel, cGridId, bSX3Header, bSX3Detail, cHeader, cDetailAlias, cDetailDescription, cMasterDescription, aExcept, aExcepDet; ; cMasterDescription := ""; SX2->( dbSetOrder( 1 ) ); If SX2->( dbSeek( "ZA2" ) ); cMasterDescription := X2Nome(); EndIf; ; cDetailAlias := ""; If ( 2 == 2 );cDetailAlias := "ZA2"; EndIf; If  ( 2 == 3 ); ; EndIf; ; If ( 2 > 1 ); cDetailDescription := ""; SX2->( dbSetOrder( 1 ) ); If SX2->( dbSeek( cDetailAlias ) ); cDetailDescription := X2Nome(); EndIf; EndIf; ; cHeader := ""; If ( 2 == 2 ); aHeader := IIf( Empty(      	{ "ZA2_MUSICA", "ZA2_ITEM" } ), {},      	{ "ZA2_MUSICA", "ZA2_ITEM" } ); If ( ValType( aHeader ) == "A" ); For nX:=1 To Len( aHeader ); cHeader += &( "aHeader[" + Str(nX) + "]") +"|"; next; EndIf; If cHeader <> ""; bSX3Header := {|cCampo|  AllTrim( cCampo )+"|" $ cHeader}; bSX3Detail := {|cCampo| !AllTrim( cCampo )+"|" $ cHeader}; Else; bSX3Header := NIL; bSX3Detail := NIL; EndIf; Else; bSX3Header := NIL; bSX3Detail := NIL; EndIf; ; oMasterStruct := FWFormStruct( 1, "ZA2", bSX3Header ); ; If ( ValType() == "A" ); aExcept := IIf( Empty( ), {}, ); For nX := 1 To Len( aExcept ); oMasterStruct:RemoveField( Eval( &("{|| aExcept["+Str(nX)+"] }") ) ); Next; EndIf; ; If ( 2 > 1 ); oDetailStruct := FWFormStruct( 1, cDetailAlias, bSX3Detail ); ; If ( ValType() == "A" ); aExcepDet := IIf( Empty( ), {}, ); For nX := 1 To Len( aExcepDet ); oDetailStruct:RemoveField( Eval( &("{|| aExcepDet["+Str(nX)+"] }") ) ); Next; EndIf; ; EndIf; ; oModel := MPFormModel():New( If( ValType( "MDCOMP043" )=="C", "MDCOMP043", "COMP043_MVC" ),,,, ); oModel:SetDescription( "Teste Tabela Nao Normalizada" ); ; oModel:AddFields( "COMP043_MVC"+"_"+"ZA2", NIL, oMasterStruct,,, ); oModel:GetModel( "COMP043_MVC"+"_"+"ZA2" ):SetDescription( cMasterDescription ); ; If ( 2 > 1 ); ; cGridId := "COMP043_MVC"+"_"+cDetailAlias; If ( 2 == 2 ); cGridId := "COMP043_MVC"+"_GRID"; EndIf; ; oModel:AddGrid( cGridId, "COMP043_MVC"+"_"+"ZA2", oDetailStruct,,,,, ); oModel:GetModel( cGridId ):SetDescription( cDetailDescription ); If ( ValType({		{ "ZA2_AUTOR" }} )=="A" ); oModel:GetModel( cGridId ):SetUniqueLine(		{ "ZA2_AUTOR" } ); EndIf; oModel:GetModel( cGridId ):SetRelation(      	{ { "ZA2_FILIAL", 'xFilial( "ZA2" )' }, { "ZA2_MUSICA", "ZA2_MUSICA" } }, If( Empty( ZA2->(IndexKey(1)) ), ( "ZA2" )->( IndexKey( 1 ) ), ZA2->(IndexKey(1)) ) ); oModel:GetModel( cGridId ):SetOptional(.F. ); EndIf; If ( ValType( )=="A" ); oModel:SetPrimaryKey( ); EndIf; Return oModel; ; ; Static Function ViewDef(); ; Local oModel, nX, cGridId, bSX3Header, bSX3Detail, cHeader, cDetailAlias, aExcept, aExcepDet; ; oModel := FWLoadModel( "COMP043_MVC" ); ; cDetailAlias := ""; If ( 2 == 2 );cDetailAlias := "ZA2"; EndIf; If ( 2 == 3 ); ; EndIf; ; cHeader := ""; If ( 2 > 1 ); aHeader := IIf( Empty(      	{ "ZA2_MUSICA", "ZA2_ITEM" } ), {},      	{ "ZA2_MUSICA", "ZA2_ITEM" } ); If ( ValType( aHeader ) == "A" ); For nX:=1 To Len( aHeader ); cHeader += &( "aHeader[" + Str(nX) + "]") +"|"; next; EndIf; If cHeader <> ""; bSX3Header := {|cCampo|  AllTrim( cCampo )+"|" $ cHeader}; bSX3Detail := {|cCampo| !AllTrim( cCampo )+"|" $ cHeader}; Else; bSX3Header := NIL; bSX3Detail := NIL; EndIf; Else; bSX3Header := NIL; bSX3Detail := NIL; EndIf; ; oMasterStruct := FWFormStruct( 2, "ZA2", bSX3Header ); ; If ( ValType() == "A" ); aExcept := IIf( Empty( ), {}, ); For nX := 1 To Len( aExcept ); oMasterStruct:RemoveField( Eval( &("{|| aExcept["+Str(nX)+"] }") ) ); Next; EndIf; ; If ( 2 > 1 ); oDetailStruct := FWFormStruct( 2, cDetailAlias, bSX3Detail ); ; If ( ValType() == "A" ); aExcepDet := IIf( Empty( ), {}, ); For nX := 1 To Len( aExcepDet ); oDetailStruct:RemoveField( Eval( &("{|| aExcepDet["+Str(nX)+"] }") ) ); Next; EndIf; ; EndIf; ; oView := FWFormView():New(); oView:SetModel( oModel ); oView:AddField( "COMP043_MVC"+"_"+"ZA2" , oMasterStruct ); ; If ( 2 == 1 ); oView:CreateHorizontalBox( "BOXFIELD", 100 ); oView:SetOwnerView( "COMP043_MVC"+"_"+"ZA2", "BOXFIELD" ); EndIf; ; If ( 2 > 1 ); ; cGridId := "COMP043_MVC"+"_"+cDetailAlias; If ( 2 == 2 ); cGridId := "COMP043_MVC"+"_GRID"; EndIf; ; oView:AddGrid( cGridId, oDetailStruct ); If ValType( "ZA2_ITEM" ) == "C" .And.  !Empty( "ZA2_ITEM" ); oView:AddIncrementField( cGridId, "ZA2_ITEM" ); EndIf; oView:CreateHorizontalBox( "BOXFIELD", 20 ); oView:SetOwnerView( "COMP043_MVC"+"_"+"ZA2", "BOXFIELD" ); oView:CreateHorizontalBox( "BOXGRID" , 80 ); oView:SetOwnerView( cGridId, "BOXGRID" ); EndIf; oView:EnableControlBar( .T.  ); Return oView; ; ; Static Function MenuDef(); Return FWMVCMENU( "COMP043_MVC" )
+
+Return

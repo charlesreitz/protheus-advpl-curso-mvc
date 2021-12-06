@@ -1,0 +1,234 @@
+<ApMenu>
+	<DocumentProperties>
+		<Module></Module>
+		<Version>10.1</Version>
+	</DocumentProperties>
+	<Menu Status="Enable">
+		<Title lang="pt">&Atualizações</Title>
+		<Title lang="es">&Actualizaciones</Title>
+		<Title lang="en">&Updates</Title>
+	</Menu>
+	<Menu Status="Enable">
+		<Title lang="pt">&Consultas</Title>
+		<Title lang="es">&Consultas</Title>
+		<Title lang="en">&Searches</Title>
+	</Menu>
+	<Menu Status="Enable">
+		<Title lang="pt">&Relatorios</Title>
+		<Title lang="es">&Informes</Title>
+		<Title lang="en">&Reports</Title>
+	</Menu>
+	<Menu Status="Enable">
+		<Title lang="pt">&Miscelanea</Title>
+		<Title lang="es">&Miscelanea</Title>
+		<Title lang="en">&Miscellaneous</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Autor/Interprete</Title>
+				<Title lang="es">Autor/Interprete</Title>
+				<Title lang="en">Autor/Interprete</Title>
+				<Function>COMP011_MVC</Function>
+				<Type>03</Type>
+				<Tables>ZA0</Tables>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Autor/Inter. Cpo Manual</Title>
+				<Title lang="es">Autor/Inter. Cpo Manual</Title>
+				<Title lang="en">Autor/Inter. Cpo Manual</Title>
+				<Function>COMP013_MVC</Function>
+				<Type>03</Type>
+				<Tables>ZA1</Tables>
+				<Tables>ZA2</Tables>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Autor/Inter. Complemento</Title>
+				<Title lang="es">Autor/Inter. Complemento</Title>
+				<Title lang="en">Autor/Inter. Complemento</Title>
+				<Function>COMP015_MVC</Function>
+				<Type>03</Type>
+				<Tables>ZA0</Tables>
+				<Tables>ZA6</Tables>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Músicas</Title>
+				<Title lang="es">Músicas</Title>
+				<Title lang="en">Músicas</Title>
+				<Function>COMP021_MVC</Function>
+				<Type>03</Type>
+				<Tables>ZA1</Tables>
+				<Tables>ZA2</Tables>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Músicas c/ Calc. COMMIT</Title>
+				<Title lang="es">Músicas c/ Calc. COMMIT</Title>
+				<Title lang="en">Músicas c/ Calc. COMMIT</Title>
+				<Function>COMP022_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Músicas com Marcação</Title>
+				<Title lang="es">Músicas com Marcação</Title>
+				<Title lang="en">Músicas com Marcação</Title>
+				<Function>COMP026_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Músicas View em Botão</Title>
+				<Title lang="es">Músicas View em Botão</Title>
+				<Title lang="en">Músicas View em Botão</Title>
+				<Function>COMP021V_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Músicas com Gráfico</Title>
+				<Title lang="es">Músicas com Gráfico</Title>
+				<Title lang="en">Músicas com Gráfico</Title>
+				<Function>COMP021G_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Músicas Consulta</Title>
+				<Title lang="es">Músicas Consulta</Title>
+				<Title lang="en">Músicas Consulta</Title>
+				<Function>COMP029_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Álbuns</Title>
+				<Title lang="es">Álbuns</Title>
+				<Title lang="en">Álbuns</Title>
+				<Function>COMP023_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Álbuns Mult. Browses</Title>
+				<Title lang="es">Álbuns Mult. Browses</Title>
+				<Title lang="en">Álbuns Mult. Browses</Title>
+				<Function>COMP024_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Álbuns com Folders</Title>
+				<Title lang="es">Álbuns com Folders</Title>
+				<Title lang="en">Álbuns com Folders</Title>
+				<Function>COMP024A_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Álbuns com TREE</Title>
+				<Title lang="es">Álbuns com TREE</Title>
+				<Title lang="en">Álbuns com TREE</Title>
+				<Function>COMP027_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Marcação</Title>
+				<Title lang="es">Marcação</Title>
+				<Title lang="en">Marcação</Title>
+				<Function>COMP025_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Import. Autor/Inter.</Title>
+				<Title lang="es">Import. Autor/Inter.</Title>
+				<Title lang="en">Import. Autor/Inter.</Title>
+				<Function>COMP031_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Import. Músicas</Title>
+				<Title lang="es">Import. Músicas</Title>
+				<Title lang="en">Import. Músicas</Title>
+				<Function>COMP032_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">New Model 1</Title>
+				<Title lang="es">New Model 1</Title>
+				<Title lang="en">New Model 1</Title>
+				<Function>COMP041_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">New Model 2</Title>
+				<Title lang="es">New Model 2</Title>
+				<Title lang="en">New Model 2</Title>
+				<Function>COMP042_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">New Model 3</Title>
+				<Title lang="es">New Model 3</Title>
+				<Title lang="en">New Model 3</Title>
+				<Function>COMP043_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">New Model 4</Title>
+				<Title lang="es">New Model 4</Title>
+				<Title lang="en">New Model 4</Title>
+				<Function>COMP044_MVC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+			</MenuItem>
+		</Menu>
+	</Menu>
+</ApMenu>
